@@ -156,6 +156,7 @@
 							
 							if (info.status == 200){
 						          self.upLoadVideo();
+								  //是否第一次上传
 								if(self.first){
 									
 									self.first = false
@@ -300,17 +301,17 @@
 				self.calculate_object_name(filename)
 			
 				let new_multipart_params = {
-					'key': self.g_object_name,
+					'key': self.g_object_name, // 文件服务器存储路径以及文件名；
 					'policy': self.policyBase64,
 					'OSSAccessKeyId': self.accessid,
 					'success_action_status': '200', //让服务端返回200,不然，默认会返回204
-					'signature': self.signature,
+					'signature': self.signature, // 服务端获取到的签名
 				};
 			
 
 				self.plupLoader.setOption({
-					'url': self.host,
-					'multipart_params': new_multipart_params
+					'url': self.host, // oss文件服务器上传地址；
+					'multipart_params': new_multipart_params // oss文件服务器上传参数；
 				});
 
 				self.plupLoader.start();
